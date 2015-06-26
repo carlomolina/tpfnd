@@ -1,0 +1,26 @@
+security:
+    encoders:
+        Tpfnd\TpfndUserBundle\Entity\TpfndUser:
+            algorithm: sha256
+
+    providers:
+        db_provider:
+                entity:
+                        class: TpfndUserBundle:TpfndUser
+                        property: email
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt|error)|css|images|js)/
+            security: false
+
+        secured_area:
+                pattern: ^/
+                provider: db_provider
+                anonymous: ~
+                form_login:
+                        login_path: /login
+                        check_path: /login_check
+
+    access_control:
+            - { path: ^/app/example, roles: ROLE_USER }
