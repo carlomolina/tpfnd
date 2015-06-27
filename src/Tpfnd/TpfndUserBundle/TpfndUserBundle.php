@@ -1,6 +1,6 @@
 <?php
 
-namespace Tpfnd\UserBundle;
+namespace Tpfnd\TpfndUserBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
