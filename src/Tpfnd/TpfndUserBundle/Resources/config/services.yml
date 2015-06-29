@@ -4,3 +4,6 @@ services:
 #        arguments: [@service_id, "plain_value", %parameter%]
     sha256salted_encoder:
         class: Tpfnd\TpfndUserBundle\Service\Sha256Salted
+
+    tpfnd_security.tpfnd_authentication_utils:
+        class: Tpfnd\TpfndUserBundle\Service\TpfndAuthenticationUtils

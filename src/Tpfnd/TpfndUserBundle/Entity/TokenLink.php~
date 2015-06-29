@@ -1,0 +1,41 @@
+<?php
+
+namespace Tpfnd\TpfndUserBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
+/**
+ * @ORM\Entity(repositoryClass="Tpfnd\TpfndUserBundle\Entity\TpfndUserRepository")
+ */
+class TokenLink {
+  /**
+   * @ORM\Column(type="integer")
+   * @ORM\Id
+   * @ORM\GeneratedValue(strategy="AUTO")
+   */
+  private $id;
+
+  /**
+   * @ORM\Column(type="string", length=100, unique=true)
+   * @Assert\NotBlank()
+   */
+  private $token;
+
+  /**
+   * @ORM\Column(type="string", length=255)
+   * @Assert\NotBlank()
+   */
+  private $url;
+
+  /**
+   * @ORM\OneToOne(targetEntity="TpfndUserBundle:TpfndUser")
+   */
+  private $tpfndUser;
+
+  /**
+   * @ORM\Column(type="datetime")
+   * @Assert\NotBlank()
+   */
+  private $created;
+}

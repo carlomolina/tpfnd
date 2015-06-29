@@ -2,6 +2,10 @@ tpfnd_sample_homepage:
     path:     /hello/{name}
     defaults: { _controller: TpfndUserBundle:Default:index }
 
+tpfnd_home:
+    path: /
+    defaults: { _controller: TpfndUserBundle:TpfndHome:index }
+
 user_register:
     path:     /register
     defaults: { _controller: TpfndUserBundle:TpfndUser:register }
@@ -17,3 +21,31 @@ login_route:
 login_check:
     path:     /login_check
     defaults: { _controller: TpfndUserBundle:Security:loginCheck }
+
+user_edit:
+    path:     /user/edit/{id}
+    defaults: { _controller: TpfndUserBundle:TpfndUser:edit }
+
+user_update:
+    path:     /user/update/{id}
+    defaults: { _controller: TpfndUserBundle:TpfndUser:update }
+
+password_change: 
+    path:     /user/changepass/{id} 
+    defaults: { _controller: TpfndUserBundle:TpfndUser:changePassword }
+
+password_update:
+    path:     /user/updatepass/{id}
+    defaults: { _controller: TpfndUserBundle:TpfndUser:updatePassword }
+
+password_reset:
+    path:     /user/resetpass
+    defaults: { _controller: TpfndUserBundle:TpfndUser:resetPassword }
+
+process_email:
+    path:     /user/processemail
+    defaults: { _controller: TpfndUserBundle:TpfndUser:processEmail }
+
+password_email_update:
+    path:     /user/passwordemailupdate/{token}
+    defaults: { _controller: TpfndUserBundle:TpfndUser:passwordEmailUpdate }

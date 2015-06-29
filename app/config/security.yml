@@ -16,8 +16,8 @@ security:
         db_provider:
                 entity:
                         class: TpfndUserBundle:TpfndUser
-                        property: username
-                        #property: email
+                        #property: username
+                        property: email
 
     firewalls:
         dev:
@@ -29,11 +29,12 @@ security:
                 provider: db_provider
                 anonymous: ~
                 form_login:
+                        username_parameter: _email
                         login_path: /login
                         check_path: /login_check
                 logout:
                     path:   /logout
-                    target: /app/example
+                    target: /
                             
 
     access_control:

@@ -69,6 +69,8 @@ class TpfndUser implements UserInterface, \Serializable {
 
   public function getUsername() {
 	return $this->username;
+	#hack for login through email
+ 	#return $this->email;
   }
 
   public function getSalt() {
