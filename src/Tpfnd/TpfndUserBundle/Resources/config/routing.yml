@@ -1,3 +1,19 @@
-tpfnd_user_homepage:
+tpfnd_sample_homepage:
     path:     /hello/{name}
     defaults: { _controller: TpfndUserBundle:Default:index }
+
+user_register:
+    path:     /register
+    defaults: { _controller: TpfndUserBundle:TpfndUser:register }
+
+user_create:
+    path:     /register/create
+    defaults: { _controller: TpfndUserBundle:TpfndUser:create }
+
+login_route:
+    path:     /login
+    defaults: { _controller: TpfndUserBundle:Security:login }
+
+login_check:
+    path:     /login_check
+    defaults: { _controller: TpfndUserBundle:Security:loginCheck }

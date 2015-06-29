@@ -1,6 +1,6 @@
 <?php
 
-namespace Tpfnd\UserBundle\Entity;
+namespace Tpfnd\TpfndUserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -9,7 +9,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Table(name="tpfnd_users")
- * @ORM\Entity(repositoryClass="Tpfnd\UserBundle\Entity\UserRepository")
+ * @ORM\Entity(repositoryClass="Tpfnd\UserBundle\Entity\TpfndUserRepository")
  * @UniqueEntity(fields="email", message="Email already taken")
  */
 class TpfndUser implements UserInterface, \Serializable {
@@ -108,4 +108,119 @@ class TpfndUser implements UserInterface, \Serializable {
 		) = unserialize($serialized);
     }
 
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set firstname
+     *
+     * @param string $firstname
+     * @return TpfndUser
+     */
+    public function setFirstname($firstname)
+    {
+        $this->firstname = $firstname;
+
+        return $this;
+    }
+
+    /**
+     * Get firstname
+     *
+     * @return string 
+     */
+    public function getFirstname()
+    {
+        return $this->firstname;
+    }
+
+    /**
+     * Set lastname
+     *
+     * @param string $lastname
+     * @return TpfndUser
+     */
+    public function setLastname($lastname)
+    {
+        $this->lastname = $lastname;
+
+        return $this;
+    }
+
+    /**
+     * Get lastname
+     *
+     * @return string 
+     */
+    public function getLastname()
+    {
+        return $this->lastname;
+    }
+
+    /**
+     * Set password
+     *
+     * @param string $password
+     * @return TpfndUser
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     * @return TpfndUser
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string 
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * Set isActive
+     *
+     * @param boolean $isActive
+     * @return TpfndUser
+     */
+    public function setIsActive($isActive)
+    {
+        $this->isActive = $isActive;
+
+        return $this;
+    }
+
+    /**
+     * Get isActive
+     *
+     * @return boolean 
+     */
+    public function getIsActive()
+    {
+        return $this->isActive;
+    }
 }
