@@ -12,10 +12,12 @@ use Tpfnd\TpfndUserBundle\Form\Model\Registration;
 use Tpfnd\TpfndUserBundle\Form\Model\PasswordChange;
 use Tpfnd\TpfndUserBundle\Entity\TpfndUser;
 use Tpfnd\TpfndUserBundle\Entity\TokenLink;
+use Doctrine\ORM\ORMException;
 
 class TpfndUserController extends Controller {
 
-    const PASSWORD_EMAIL_UPDATE_ROUTE = 'password_email_update';
+    const EMAIL_LINK_ROUTE = 'check_token';
+    const EMAIL_PASSWORD_RESET_ROUTE = 'password_email_change';
 
     public function registerAction() {
 	$registration = new Registration();
@@ -37,18 +39,23 @@ class TpfndUserController extends Controller {
 	$form->handleRequest($request);
 
 	if ($form->isValid()) {
-	    $registration = $form->getData();
-	    $user = $registration->getUser();
-	    $user->setSalt(uniqid(mt_rand()));
-	    $name = str_replace(' ', '', $user->getFirstname() . $user->getLastname());
-	    $user->setUsername(strtolower($name));
+	    try {
+		$registration = $form->getData();
+		$user = $registration->getUser();
+		$user->setSalt(uniqid(mt_rand()));
+		$name = str_replace(' ', '', $user->getFirstname() . $user->getLastname());
+		$user->setUsername(strtolower($name));
 
-	    $encoder = $this->container->get('sha256salted_encoder');
-	    $password = $encoder->encodePassword($user->getPassword(), $user->getSalt());
-	    $user->setPassword($password);
+		$encoder = $this->container->get('sha256salted_encoder');
+		$password = $encoder->encodePassword($user->getPassword(), $user->getSalt());
+		$user->setPassword($password);
 
-	    $em->persist($user);
-	    $em->flush();
+		$em->persist($user);
+		$em->flush();
+	    } catch (\Exception $e) {
+		//TODO (proper error handling)
+		return new Response($this->createNotFoundException());
+	    }
 
 	    $message = \Swift_Message::newInstance()
 		    ->setSubject('tpfnd registration')
@@ -85,22 +92,32 @@ class TpfndUserController extends Controller {
     }
 
     public function updateAction(Request $request, $id) {
-	$oldUser = $this->getDoctrine()
-		->getRepository('TpfndUserBundle:TpfndUser')
-		->find($id);
+	$loggedUser = $this->get('security.token_storage')->getToken()->getUser();
+	if ($loggedUser->getId() != $id) {
+	    return new Response("You are not allowed to edit somebody else's user details.");
+	}
+	try {
+	    $oldUser = $this->getDoctrine()
+		    ->getRepository('TpfndUserBundle:TpfndUser')
+		    ->find($id);
 
-	$form = $this->createForm(new EditUserType(), new TpfndUser());
+	    $form = $this->createForm(new EditUserType(), new TpfndUser());
 
-	$form->handleRequest($request);
+	    $form->handleRequest($request);
 
-	$newUser = $form->getData();
+	    $newUser = $form->getData();
 
-	$em = $this->getDoctrine()->getManager();
+	    $em = $this->getDoctrine()->getManager();
 
-	$oldUser->setFirstname($newUser->getFirstname());
-	$oldUser->setLastname($newUser->getLastname());
+	    $oldUser->setFirstname($newUser->getFirstname());
+	    $oldUser->setLastname($newUser->getLastname());
 
-	$em->flush();
+	    $em->flush();
+	} catch (ORMException $e) {
+	    //TODO (Proper error handling?)
+	    return new Response($e);
+	}
+
 
 	return $this->redirectToRoute('tpfnd_home');
     }
@@ -117,33 +134,15 @@ class TpfndUserController extends Controller {
     }
 
     public function updatePasswordAction(Request $request, $id) {
+	$loggedUser = $this->get('security.token_storage')->getToken()->getUser();
+	if ($loggedUser->getId() != $id) {
+	    return new Response("You are not allowed to edit somebody else's user details.");
+	}
 	$user = $this->getDoctrine()
 		->getRepository('TpfndUserBundle:TpfndUser')
 		->find($id);
 
-	$form = $this->createForm(new EditPasswordType(), new PasswordChange());
-
-	$form->handleRequest($request);
-
-	$passwordChange = $request->get('editPassword');
-	if ($this->isPasswordCorrect(
-			$user->getPassword(), $passwordChange['oldpassword']
-			, $user->getSalt()
-		)) {
-	    $newPassword = $this->sha256HashPassword(
-		    $passwordChange['newpassword']['newpassword'], $user->getSalt()
-	    );
-
-	    $em = $this->getDoctrine()->getManager();
-
-	    $user->setPassword($newPassword);
-
-	    $em->flush();
-
-	    return $this->redirectToRoute('tpfnd_home');
-	} else {
-	    return new Response('Wrong password.');
-	}
+	return $this->proceedWithPasswordChange($request, $user);
     }
 
     public function resetPasswordAction() {
@@ -171,13 +170,11 @@ class TpfndUserController extends Controller {
 	$user = $this->getDoctrine()
 		->getRepository('TpfndUserBundle:TpfndUser')
 		->findOneBy(array('email' => $email));
-//	dump($user);
-//	exit();
 
 	if ($user) {
 	    //Send Mail
-	    $url = self::PASSWORD_EMAIL_UPDATE_ROUTE;
-	    $link = $this->generate24hrLink($user, $url);
+	    $url = self::EMAIL_LINK_ROUTE;
+	    $link = "http://" . $this->generate24hrLink($user, $url);
 	    $message = \Swift_Message::newInstance()
 		    ->setSubject('Password Reset')
 		    ->setFrom('carlomanuel.molina@chromedia.com')
@@ -197,31 +194,91 @@ class TpfndUserController extends Controller {
 	}
     }
 
-    public function passwordEmailUpdateAction($token) {
-	//Get Token, compare with date created and new Datetime
-	//if within 24hrs, redirect to password_update
-	//else response lapsed url
+    public function checkTokenAction($token) {
+	$tokenLink = $this->getDoctrine()
+		->getRepository('TpfndUserBundle:TokenLink')
+		->findOneBy(array('token' => $token));
+
+	//TODO Check proper way of calculating time difference
+	//Have this in hours
+	$timeLapsed = time_diff($tokenLink->getCreated(), new \DateTime());
+
+	if ($timeLapsed < 24) {
+	    return $this->redirect($this->generateUrl(self::EMAIL_PASSWORD_RESET_ROUTE));
+	} else {
+	    return new Response('The 24-hour period has already lapsed.');
+	}
+    }
+
+    public function changePasswordFromEmailAction($token) {
+	$form = $this->createForm(new EditPasswordType(), new PasswordChange(), array(
+	    'action' => $this->generateUrl('password_update_from_email', array('token' => $token)),
+	));
+
+	return $this->render(
+			'TpfndUserBundle:TpfndUser:edit.html.twig', array(
+		    'form' => $form->createView())
+	);
+    }
+
+    public function updatePasswordFromEmailAction(Request $request, $token) {
+	//TODO (Get user from left join)
+	$user = $this->getDoctrine()
+		->getRepository('TpfndUserBundle:TokenLink')
+		->findOneBy($token);
+
+	return $this->proceedWithPasswordChange($request, $user);
+    }
+
+    public function proceedWithPasswordChange(Request $request, $user) {
+	$form = $this->createForm(new EditPasswordType(), new PasswordChange());
+
+	$form->handleRequest($request);
+
+	$passwordChange = $request->get('editPassword');
+	if ($this->isPasswordCorrect(
+			$user->getPassword(), $passwordChange['oldpassword']
+			, $user->getSalt()
+		)) {
+	    try {
+		$newPassword = $this->sha256HashPassword(
+			$passwordChange['newpassword']['newpassword'], $user->getSalt()
+		);
+
+		$em = $this->getDoctrine()->getManager();
+
+		$user->setPassword($newPassword);
+
+		$em->flush();
+	    } catch (ORMException $e) {
+		//TODO (proper error handling)
+		return new Response($e);
+	    }
+
+	    return $this->redirectToRoute('tpfnd_home');
+	} else {
+	    return new Response('Wrong password.');
+	}
     }
 
     public function generate24hrLink($user, $url) {
-	//create an entry to 24hrlink table
-	$em = $this->getDoctrine()->getManager();
+	try {
+	    $em = $this->getDoctrine()->getManager();
 
-	$rawLink = new TokenLink();
-	$rawLink->setCreated(new \DateTime());
-	$rawLink->setToken(md5(uniqid(rand(), true)));
-	$rawLink->setTpfndUser($user);
-	$rawLink->setUrl($url);
+	    $rawLink = new TokenLink();
+	    $rawLink->setCreated(new \DateTime());
+	    $rawLink->setToken(md5(uniqid(rand(), true)));
+	    $rawLink->setTpfndUser($user);
+	    $rawLink->setUrl($url);
 
-	$em->persist($rawLink);
-	$em->flush();
+	    $em->persist($rawLink);
+	    $em->flush();
+	} catch (ORMException $e) {
+	    //TODO (proper error handling)
+	    return new Response($e);
+	}
 
 	return $this->generateUrl($rawLink->getUrl(), array('token' => $rawLink->getToken()));
-    }
-
-    public function bcryptHashPassword($password) {
-	$options = array('cost' => 11);
-	return password_hash($password, PASSWORD_BCRYPT, $options);
     }
 
     public function sha256HashPassword($raw, $salt) {

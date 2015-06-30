@@ -16,7 +16,6 @@ security:
         db_provider:
                 entity:
                         class: TpfndUserBundle:TpfndUser
-                        #property: username
                         property: email
 
     firewalls:
@@ -35,7 +34,8 @@ security:
                 logout:
                     path:   /logout
                     target: /
-                            
+
 
     access_control:
             - { path: ^/app/example, roles: ROLE_USER }
+            - { path: ^/user/, roles: ROLE_USER }

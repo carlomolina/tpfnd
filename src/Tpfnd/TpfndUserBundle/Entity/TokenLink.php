@@ -30,7 +30,7 @@ class TokenLink {
   private $url;
 
   /**
-   * @ORM\OneToOne(targetEntity="TpfndUser")
+   * @ORM\ManyToOne(targetEntity="TpfndUser")
    */
   private $tpfndUser;
 

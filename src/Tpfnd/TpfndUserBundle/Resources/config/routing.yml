@@ -39,13 +39,21 @@ password_update:
     defaults: { _controller: TpfndUserBundle:TpfndUser:updatePassword }
 
 password_reset:
-    path:     /user/resetpass
+    path:     /email/resetpass
     defaults: { _controller: TpfndUserBundle:TpfndUser:resetPassword }
 
 process_email:
-    path:     /user/processemail
+    path:     /email/processemail
     defaults: { _controller: TpfndUserBundle:TpfndUser:processEmail }
 
+check_token:
+    path: /email/check/{token}
+    defaults: { _controller: TpfndUserBundle:TpfndUser:checkToken }
+
+password_email_change:
+    path:     /email/resetpass/{token}
+    defaults: { _controller: TpfndUserBundle:TpfndUser:changePasswordFromEmail }
+
 password_email_update:
-    path:     /user/passwordemailupdate/{token}
-    defaults: { _controller: TpfndUserBundle:TpfndUser:passwordEmailUpdate }
+    path: /email/updatepass/{token}
+    defaults: { _controller: TpfndUserBundle:TpfndUser:updatePasswordFromEmail }
