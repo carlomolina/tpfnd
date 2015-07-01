@@ -2,12 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e6325cca-3a5c-4b76-a1be-6de2388bed32" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Tpfnd/TpfndUserBundle/Form/Type/ResetPasswordType.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.ids" afterPath="$PROJECT_DIR$/.idea/dataSources.ids" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Tpfnd/TpfndUserBundle/Entity/ConfirmationLink.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Tpfnd/TpfndUserBundle/Entity/TokenLink.php" afterPath="$PROJECT_DIR$/src/Tpfnd/TpfndUserBundle/Entity/TokenLink.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Tpfnd/TpfndUserBundle/Controller/TpfndUserController.php" afterPath="$PROJECT_DIR$/src/Tpfnd/TpfndUserBundle/Controller/TpfndUserController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/security/login.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/security/login.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Tpfnd/TpfndUserBundle/Resources/views/TpfndUser/notification.html.twig" afterPath="$PROJECT_DIR$/src/Tpfnd/TpfndUserBundle/Resources/views/TpfndUser/notification.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Tpfnd/TpfndUserBundle/Resources/config/routing.yml" afterPath="$PROJECT_DIR$/src/Tpfnd/TpfndUserBundle/Resources/config/routing.yml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="tpfnd.iws" />
@@ -53,59 +53,25 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="TpfndUserController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="TpfndUserController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Tpfnd/TpfndUserBundle/Controller/TpfndUserController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7214286" vertical-offset="4051" max-vertical-offset="5593">
-              <caret line="268" column="0" selection-start-line="268" selection-start-column="0" selection-end-line="268" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="924" max-vertical-offset="6324">
+              <caret line="83" column="0" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
               <folding>
                 <element signature="e#52#109#0#PHP" expanded="true" />
-                <element signature="e#1061#1074#1#PHP" expanded="true" />
-                <element signature="e#1132#1178#0#PHP" expanded="true" />
-                <element signature="e#2622#2672#0#PHP" expanded="true" />
-                <element signature="e#2890#2902#1#PHP" expanded="true" />
-                <element signature="e#3029#3056#1#PHP" expanded="true" />
-                <element signature="e#3194#3207#0#PHP" expanded="true" />
-                <element signature="e#3320#3362#0#PHP" expanded="true" />
-                <element signature="e#3818#3845#1#PHP" expanded="true" />
-                <element signature="e#4412#4424#1#PHP" expanded="true" />
-                <element signature="e#4616#4633#0#PHP" expanded="true" />
-                <element signature="e#4711#4753#0#PHP" expanded="true" />
-                <element signature="e#5192#5219#1#PHP" expanded="true" />
-                <element signature="e#6058#6073#1#PHP" expanded="true" />
-                <element signature="e#6231#6282#0#PHP" expanded="true" />
-                <element signature="e#6516#6531#1#PHP" expanded="true" />
-                <element signature="e#6813#6840#1#PHP" expanded="true" />
-                <element signature="e#7370#7421#0#PHP" expanded="true" />
-                <element signature="e#7920#7947#1#PHP" expanded="true" />
-                <element signature="e#8682#8705#0#PHP" expanded="true" />
-                <element signature="e#8789#8831#0#PHP" expanded="true" />
-                <element signature="e#9057#9084#1#PHP" expanded="true" />
-                <element signature="e#10094#10107#1#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ResetPasswordType.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Tpfnd/TpfndUserBundle/Form/Type/ResetPasswordType.php">
+      <file leaf-file-name="notification.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Tpfnd/TpfndUserBundle/Resources/views/TpfndUser/notification.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.576923" vertical-offset="0" max-vertical-offset="476">
-              <caret line="7" column="12" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="12" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="255">
+              <caret line="6" column="56" selection-start-line="6" selection-start-column="56" selection-end-line="6" selection-end-column="56" />
               <folding>
-                <element signature="e#51#91#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EditPasswordType.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Tpfnd/TpfndUserBundle/Form/Type/EditPasswordType.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-15.038462" vertical-offset="0" max-vertical-offset="493">
-              <caret line="23" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-              <folding>
-                <element signature="e#51#91#0#PHP" expanded="true" />
+                <element signature="e#12#26#0#Twig" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -114,48 +80,54 @@
       <file leaf-file-name="TokenLink.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Tpfnd/TpfndUserBundle/Entity/TokenLink.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.5384617" vertical-offset="340" max-vertical-offset="2516">
-              <caret line="32" column="44" selection-start-line="32" selection-start-column="44" selection-end-line="32" selection-end-column="44" />
-              <folding />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1422" max-vertical-offset="3026">
+              <caret line="68" column="5" selection-start-line="68" selection-start-column="5" selection-end-line="68" selection-end-column="5" />
+              <folding>
+                <element signature="e#48#80#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tpfnd.token_link" pinned="false" current-in-tab="false">
-        <entry file="dbDummy://dbtable:/8a2f4c61/c59bde06-1775-4c5e-a5ba-a3eebd251c1a/tpfnd..token_link">
-          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-            <state>
-              <filtering enabled="true" />
-            </state>
-          </provider>
-          <provider editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tpfnd.tpfnd_users" pinned="false" current-in-tab="false">
-        <entry file="dbDummy://dbtable:/8a2f4c61/c59bde06-1775-4c5e-a5ba-a3eebd251c1a/tpfnd..tpfnd_users">
-          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-            <state>
-              <filtering enabled="true" />
-            </state>
-          </provider>
-          <provider editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TpfndUser.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Tpfnd/TpfndUserBundle/Entity/TpfndUser.php">
+      <file leaf-file-name="routing.yml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Tpfnd/TpfndUserBundle/Resources/config/routing.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="4114">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="1190">
+              <caret line="18" column="48" selection-start-line="18" selection-start-column="48" selection-end-line="18" selection-end-column="48" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SecurityController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Tpfnd/TpfndUserBundle/Controller/SecurityController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="374" max-vertical-offset="510">
+              <caret line="23" column="2" selection-start-line="23" selection-start-column="2" selection-end-line="23" selection-end-column="2" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="login.html.twig" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Resources/views/security/login.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="782">
+              <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+              <folding>
+                <element signature="e#529#540#0#Twig" expanded="true" />
+                <element signature="e#1061#1081#0#Twig" expanded="true" />
+                <element signature="e#1156#1169#0#Twig" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="security.yml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/config/security.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="96" max-vertical-offset="782">
+              <caret line="10" column="18" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -169,8 +141,12 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/Resources/views/security/login.html.twig" />
         <option value="$PROJECT_DIR$/src/Tpfnd/TpfndUserBundle/Form/Type/ResetPasswordType.php" />
+        <option value="$PROJECT_DIR$/src/Tpfnd/TpfndUserBundle/Entity/ConfirmationLink.php" />
+        <option value="$PROJECT_DIR$/src/Tpfnd/TpfndUserBundle/Entity/TokenLink.php" />
+        <option value="$PROJECT_DIR$/src/Tpfnd/TpfndUserBundle/Resources/views/TpfndUser/notification.html.twig" />
+        <option value="$PROJECT_DIR$/src/Tpfnd/TpfndUserBundle/Resources/config/routing.yml" />
+        <option value="$PROJECT_DIR$/app/Resources/views/security/login.html.twig" />
         <option value="$PROJECT_DIR$/src/Tpfnd/TpfndUserBundle/Controller/TpfndUserController.php" />
       </list>
     </option>
@@ -180,10 +156,9 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="518" />
-    <option name="y" value="90" />
-    <option name="width" value="1400" />
-    <option name="height" value="986" />
+    <option name="y" value="23" />
+    <option name="width" value="800" />
+    <option name="height" value="573" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -405,62 +380,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Form" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Type" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tpfnd" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tpfnd" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Tpfnd" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TpfndUserBundle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Form" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tpfnd" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tpfnd" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Tpfnd" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TpfndUserBundle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="Entity" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -475,19 +394,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Tpfnd" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TpfndUserBundle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Controller" />
+              <option name="myItemId" value="app" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -502,6 +409,40 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tpfnd" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tpfnd" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="security" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -612,30 +553,30 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="518" y="90" width="1400" height="986" extended-state="0" />
-    <editor active="false" />
+    <frame x="0" y="23" width="800" height="573" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14205816" sideWeight="0.49963742" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32922408" sideWeight="0.4993481" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Framework" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Symfony2" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32994923" sideWeight="0.4993498" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14205816" sideWeight="0.5003626" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24889544" sideWeight="0.54362416" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2016632" sideWeight="0.49935815" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32885906" sideWeight="0.49963742" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30601886" sideWeight="0.40026075" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32922408" sideWeight="0.49859944" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20667523" sideWeight="0.40364584" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30601886" sideWeight="0.59973925" order="2" side_tool="false" content_ui="combo" x="1049" y="138" width="338" height="894" />
+      <window_info id="Symfony2" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32994923" sideWeight="0.4993498" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Framework" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20667523" sideWeight="0.5963542" order="2" side_tool="false" content_ui="combo" x="1049" y="138" width="338" height="894" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24889544" sideWeight="0.54362416" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2016632" sideWeight="0.5006418" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.49963742" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -668,51 +609,84 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/Tpfnd/TpfndUserBundle/Entity/TokenLink.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1422" max-vertical-offset="3026">
+          <caret line="68" column="5" selection-start-line="68" selection-start-column="5" selection-end-line="68" selection-end-column="5" />
+          <folding>
+            <element signature="e#48#80#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Tpfnd/TpfndUserBundle/Resources/config/routing.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="1190">
+          <caret line="18" column="48" selection-start-line="18" selection-start-column="48" selection-end-line="18" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Tpfnd/TpfndUserBundle/Controller/SecurityController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="374" max-vertical-offset="510">
+          <caret line="23" column="2" selection-start-line="23" selection-start-column="2" selection-end-line="23" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/security/login.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="782">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#529#540#0#Twig" expanded="true" />
+            <element signature="e#1061#1081#0#Twig" expanded="true" />
+            <element signature="e#1156#1169#0#Twig" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/security.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="96" max-vertical-offset="782">
+          <caret line="10" column="18" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Tpfnd/TpfndUserBundle/Controller/TpfndUserController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5049">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5593">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#52#109#0#PHP" expanded="true" />
-            <element signature="e#1061#1074#1#PHP" expanded="true" />
-            <element signature="e#1132#1178#0#PHP" expanded="true" />
-            <element signature="e#2622#2672#0#PHP" expanded="true" />
-            <element signature="e#2890#2902#1#PHP" expanded="true" />
-            <element signature="e#3029#3056#1#PHP" expanded="true" />
-            <element signature="e#3194#3207#0#PHP" expanded="true" />
-            <element signature="e#3320#3362#0#PHP" expanded="true" />
-            <element signature="e#3818#3845#1#PHP" expanded="true" />
-            <element signature="e#4412#4424#1#PHP" expanded="true" />
-            <element signature="e#4616#4633#0#PHP" expanded="true" />
-            <element signature="e#4711#4753#0#PHP" expanded="true" />
-            <element signature="e#5192#5219#1#PHP" expanded="true" />
-            <element signature="e#6058#6073#1#PHP" expanded="true" />
-            <element signature="e#6231#6282#0#PHP" expanded="true" />
-            <element signature="e#6516#6531#1#PHP" expanded="true" />
-            <element signature="e#6813#6840#1#PHP" expanded="true" />
-            <element signature="e#7370#7421#0#PHP" expanded="true" />
-            <element signature="e#7920#7947#1#PHP" expanded="true" />
-            <element signature="e#8682#8705#0#PHP" expanded="true" />
-            <element signature="e#8789#8831#0#PHP" expanded="true" />
-            <element signature="e#9057#9084#1#PHP" expanded="true" />
-            <element signature="e#10094#10107#1#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Tpfnd/TpfndUserBundle/Form/Type/ResetPasswordType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="476">
+          <caret line="7" column="12" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Tpfnd/TpfndUserBundle/Form/Type/EditPasswordType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="391" max-vertical-offset="493">
+          <caret line="23" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Tpfnd/TpfndUserBundle/Entity/TokenLink.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="2516">
-          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/config/parameters.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="306">
-          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding />
+        <state vertical-scroll-proportion="0.0" vertical-offset="340" max-vertical-offset="2516">
+          <caret line="32" column="44" selection-start-line="32" selection-start-column="44" selection-end-line="32" selection-end-column="44" />
+          <folding>
+            <element signature="e#48#80#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -725,7 +699,65 @@
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/8a2f4c61/c59bde06-1775-4c5e-a5ba-a3eebd251c1a/tpfnd..tpfnd_users">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Tpfnd/TpfndUserBundle/Entity/TpfndUser.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4114">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Tpfnd/TpfndUserBundle/Controller/TpfndUserController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5049">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#52#109#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Tpfnd/TpfndUserBundle/Entity/TokenLink.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="2516">
+          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding>
+            <element signature="e#48#80#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/parameters.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="306">
+          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/8a2f4c61/c59bde06-1775-4c5e-a5ba-a3eebd251c1a/tpfnd..token_link">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -733,9 +765,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="221">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#12#26#0#Twig" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -751,7 +780,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="357" max-vertical-offset="578">
           <caret line="21" column="26" selection-start-line="21" selection-start-column="26" selection-end-line="21" selection-end-column="26" />
-          <folding />
+          <folding>
+            <element signature="e#529#540#0#Twig" expanded="true" />
+            <element signature="e#1061#1081#0#Twig" expanded="true" />
+            <element signature="e#1156#1169#0#Twig" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -769,28 +802,6 @@
           <caret line="4" column="54" selection-start-line="4" selection-start-column="54" selection-end-line="4" selection-end-column="54" />
           <folding>
             <element signature="e#52#109#0#PHP" expanded="true" />
-            <element signature="e#1061#1074#1#PHP" expanded="true" />
-            <element signature="e#1132#1178#0#PHP" expanded="true" />
-            <element signature="e#2622#2672#0#PHP" expanded="true" />
-            <element signature="e#2890#2902#1#PHP" expanded="true" />
-            <element signature="e#3029#3056#1#PHP" expanded="true" />
-            <element signature="e#3194#3207#0#PHP" expanded="true" />
-            <element signature="e#3320#3362#0#PHP" expanded="true" />
-            <element signature="e#3818#3845#1#PHP" expanded="true" />
-            <element signature="e#4412#4424#1#PHP" expanded="true" />
-            <element signature="e#4616#4633#0#PHP" expanded="true" />
-            <element signature="e#4711#4753#0#PHP" expanded="true" />
-            <element signature="e#5192#5219#1#PHP" expanded="true" />
-            <element signature="e#6058#6073#1#PHP" expanded="true" />
-            <element signature="e#6231#6282#0#PHP" expanded="true" />
-            <element signature="e#6516#6531#1#PHP" expanded="true" />
-            <element signature="e#6813#6840#1#PHP" expanded="true" />
-            <element signature="e#7370#7421#0#PHP" expanded="true" />
-            <element signature="e#7920#7947#1#PHP" expanded="true" />
-            <element signature="e#8682#8705#0#PHP" expanded="true" />
-            <element signature="e#8789#8831#0#PHP" expanded="true" />
-            <element signature="e#9057#9084#1#PHP" expanded="true" />
-            <element signature="e#10094#10107#1#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -825,28 +836,6 @@
           <caret line="203" column="25" selection-start-line="203" selection-start-column="25" selection-end-line="203" selection-end-column="25" />
           <folding>
             <element signature="e#52#109#0#PHP" expanded="true" />
-            <element signature="e#1061#1074#1#PHP" expanded="true" />
-            <element signature="e#1132#1178#0#PHP" expanded="true" />
-            <element signature="e#2622#2672#0#PHP" expanded="true" />
-            <element signature="e#2890#2902#1#PHP" expanded="true" />
-            <element signature="e#3029#3056#1#PHP" expanded="true" />
-            <element signature="e#3194#3207#0#PHP" expanded="true" />
-            <element signature="e#3320#3362#0#PHP" expanded="true" />
-            <element signature="e#3818#3845#1#PHP" expanded="true" />
-            <element signature="e#4412#4424#1#PHP" expanded="true" />
-            <element signature="e#4616#4633#0#PHP" expanded="true" />
-            <element signature="e#4711#4753#0#PHP" expanded="true" />
-            <element signature="e#5192#5219#1#PHP" expanded="true" />
-            <element signature="e#6058#6073#1#PHP" expanded="true" />
-            <element signature="e#6231#6282#0#PHP" expanded="true" />
-            <element signature="e#6516#6531#1#PHP" expanded="true" />
-            <element signature="e#6813#6840#1#PHP" expanded="true" />
-            <element signature="e#7370#7421#0#PHP" expanded="true" />
-            <element signature="e#7920#7947#1#PHP" expanded="true" />
-            <element signature="e#8682#8705#0#PHP" expanded="true" />
-            <element signature="e#8789#8831#0#PHP" expanded="true" />
-            <element signature="e#9057#9084#1#PHP" expanded="true" />
-            <element signature="e#10094#10107#1#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -873,28 +862,6 @@
           <caret line="203" column="25" selection-start-line="203" selection-start-column="25" selection-end-line="203" selection-end-column="25" />
           <folding>
             <element signature="e#52#109#0#PHP" expanded="true" />
-            <element signature="e#1061#1074#1#PHP" expanded="true" />
-            <element signature="e#1132#1178#0#PHP" expanded="true" />
-            <element signature="e#2622#2672#0#PHP" expanded="true" />
-            <element signature="e#2890#2902#1#PHP" expanded="true" />
-            <element signature="e#3029#3056#1#PHP" expanded="true" />
-            <element signature="e#3194#3207#0#PHP" expanded="true" />
-            <element signature="e#3320#3362#0#PHP" expanded="true" />
-            <element signature="e#3818#3845#1#PHP" expanded="true" />
-            <element signature="e#4412#4424#1#PHP" expanded="true" />
-            <element signature="e#4616#4633#0#PHP" expanded="true" />
-            <element signature="e#4711#4753#0#PHP" expanded="true" />
-            <element signature="e#5192#5219#1#PHP" expanded="true" />
-            <element signature="e#6058#6073#1#PHP" expanded="true" />
-            <element signature="e#6231#6282#0#PHP" expanded="true" />
-            <element signature="e#6516#6531#1#PHP" expanded="true" />
-            <element signature="e#6813#6840#1#PHP" expanded="true" />
-            <element signature="e#7370#7421#0#PHP" expanded="true" />
-            <element signature="e#7920#7947#1#PHP" expanded="true" />
-            <element signature="e#8682#8705#0#PHP" expanded="true" />
-            <element signature="e#8789#8831#0#PHP" expanded="true" />
-            <element signature="e#9057#9084#1#PHP" expanded="true" />
-            <element signature="e#10094#10107#1#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -921,28 +888,6 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#52#109#0#PHP" expanded="true" />
-            <element signature="e#1061#1074#1#PHP" expanded="true" />
-            <element signature="e#1132#1178#0#PHP" expanded="true" />
-            <element signature="e#2622#2672#0#PHP" expanded="true" />
-            <element signature="e#2890#2902#1#PHP" expanded="true" />
-            <element signature="e#3029#3056#1#PHP" expanded="true" />
-            <element signature="e#3194#3207#0#PHP" expanded="true" />
-            <element signature="e#3320#3362#0#PHP" expanded="true" />
-            <element signature="e#3818#3845#1#PHP" expanded="true" />
-            <element signature="e#4412#4424#1#PHP" expanded="true" />
-            <element signature="e#4616#4633#0#PHP" expanded="true" />
-            <element signature="e#4711#4753#0#PHP" expanded="true" />
-            <element signature="e#5192#5219#1#PHP" expanded="true" />
-            <element signature="e#6058#6073#1#PHP" expanded="true" />
-            <element signature="e#6231#6282#0#PHP" expanded="true" />
-            <element signature="e#6516#6531#1#PHP" expanded="true" />
-            <element signature="e#6813#6840#1#PHP" expanded="true" />
-            <element signature="e#7370#7421#0#PHP" expanded="true" />
-            <element signature="e#7920#7947#1#PHP" expanded="true" />
-            <element signature="e#8682#8705#0#PHP" expanded="true" />
-            <element signature="e#8789#8831#0#PHP" expanded="true" />
-            <element signature="e#9057#9084#1#PHP" expanded="true" />
-            <element signature="e#10094#10107#1#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -950,14 +895,6 @@
     <entry file="file://$PROJECT_DIR$/app/config/security.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="782">
-          <caret line="15" column="20" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/config/security.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="43" max-vertical-offset="782">
           <caret line="15" column="20" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
           <folding />
         </state>
@@ -985,38 +922,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/security/login.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="357" max-vertical-offset="578">
-          <caret line="21" column="26" selection-start-line="21" selection-start-column="26" selection-end-line="21" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Tpfnd/TpfndUserBundle/Resources/views/TpfndUser/resetpassword.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="741">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#12#26#0#Twig" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Tpfnd/TpfndUserBundle/Form/Type/EditPasswordType.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.038462" vertical-offset="0" max-vertical-offset="493">
+        <state vertical-scroll-proportion="0.0" vertical-offset="391" max-vertical-offset="493">
           <caret line="23" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-          <folding>
-            <element signature="e#51#91#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Tpfnd/TpfndUserBundle/Resources/config/routing.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="323" max-vertical-offset="1088">
-          <caret line="38" column="59" selection-start-line="38" selection-start-column="59" selection-end-line="38" selection-end-column="59" />
           <folding />
         </state>
       </provider>
@@ -1025,15 +941,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="739">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Tpfnd/TpfndUserBundle/Entity/TokenLink.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.5384617" vertical-offset="340" max-vertical-offset="2516">
-          <caret line="32" column="44" selection-start-line="32" selection-start-column="44" selection-end-line="32" selection-end-column="44" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1041,28 +948,66 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.27604872" vertical-offset="0" max-vertical-offset="739">
           <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Tpfnd/TpfndUserBundle/Entity/TpfndUser.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4114">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.26153848" vertical-offset="0" max-vertical-offset="4114">
+          <caret line="14" column="6" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="dbDummy://dbtable:/8a2f4c61/c59bde06-1775-4c5e-a5ba-a3eebd251c1a/tpfnd..token_link">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
+    <entry file="file://$PROJECT_DIR$/src/Tpfnd/TpfndUserBundle/Entity/ConfirmationLink.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.230769" vertical-offset="0" max-vertical-offset="272">
+          <caret line="8" column="19" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
+          <folding />
         </state>
       </provider>
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Tpfnd/TpfndUserBundle/Entity/TokenLink.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1422" max-vertical-offset="3026">
+          <caret line="68" column="5" selection-start-line="68" selection-start-column="5" selection-end-line="68" selection-end-column="5" />
+          <folding>
+            <element signature="e#48#80#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/security.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="96" max-vertical-offset="782">
+          <caret line="10" column="18" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Tpfnd/TpfndUserBundle/Resources/config/routing.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1190">
+          <caret line="18" column="48" selection-start-line="18" selection-start-column="48" selection-end-line="18" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Tpfnd/TpfndUserBundle/Controller/SecurityController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="374" max-vertical-offset="510">
+          <caret line="23" column="2" selection-start-line="23" selection-start-column="2" selection-end-line="23" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Tpfnd/TpfndUserBundle/Controller/TpfndUserController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="924" max-vertical-offset="6324">
+          <caret line="83" column="0" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
+          <folding>
+            <element signature="e#52#109#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1075,48 +1020,46 @@
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/8a2f4c61/c59bde06-1775-4c5e-a5ba-a3eebd251c1a/tpfnd..token_link">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Tpfnd/TpfndUserBundle/Form/Type/ResetPasswordType.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.576923" vertical-offset="0" max-vertical-offset="476">
-          <caret line="7" column="12" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="12" />
+        <state vertical-scroll-proportion="0.3090909" vertical-offset="0" max-vertical-offset="660">
+          <caret line="12" column="38" selection-start-line="12" selection-start-column="38" selection-end-line="12" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Tpfnd/TpfndUserBundle/Resources/views/TpfndUser/notification.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="255">
+          <caret line="6" column="56" selection-start-line="6" selection-start-column="56" selection-end-line="6" selection-end-column="56" />
           <folding>
-            <element signature="e#51#91#0#PHP" expanded="true" />
+            <element signature="e#12#26#0#Twig" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Tpfnd/TpfndUserBundle/Controller/TpfndUserController.php">
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/security/login.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7214286" vertical-offset="4051" max-vertical-offset="5593">
-          <caret line="268" column="0" selection-start-line="268" selection-start-column="0" selection-end-line="268" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="782">
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
           <folding>
-            <element signature="e#52#109#0#PHP" expanded="true" />
-            <element signature="e#1061#1074#1#PHP" expanded="true" />
-            <element signature="e#1132#1178#0#PHP" expanded="true" />
-            <element signature="e#2622#2672#0#PHP" expanded="true" />
-            <element signature="e#2890#2902#1#PHP" expanded="true" />
-            <element signature="e#3029#3056#1#PHP" expanded="true" />
-            <element signature="e#3194#3207#0#PHP" expanded="true" />
-            <element signature="e#3320#3362#0#PHP" expanded="true" />
-            <element signature="e#3818#3845#1#PHP" expanded="true" />
-            <element signature="e#4412#4424#1#PHP" expanded="true" />
-            <element signature="e#4616#4633#0#PHP" expanded="true" />
-            <element signature="e#4711#4753#0#PHP" expanded="true" />
-            <element signature="e#5192#5219#1#PHP" expanded="true" />
-            <element signature="e#6058#6073#1#PHP" expanded="true" />
-            <element signature="e#6231#6282#0#PHP" expanded="true" />
-            <element signature="e#6516#6531#1#PHP" expanded="true" />
-            <element signature="e#6813#6840#1#PHP" expanded="true" />
-            <element signature="e#7370#7421#0#PHP" expanded="true" />
-            <element signature="e#7920#7947#1#PHP" expanded="true" />
-            <element signature="e#8682#8705#0#PHP" expanded="true" />
-            <element signature="e#8789#8831#0#PHP" expanded="true" />
-            <element signature="e#9057#9084#1#PHP" expanded="true" />
-            <element signature="e#10094#10107#1#PHP" expanded="true" />
+            <element signature="e#529#540#0#Twig" expanded="true" />
+            <element signature="e#1061#1081#0#Twig" expanded="true" />
+            <element signature="e#1156#1169#0#Twig" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -18,7 +18,8 @@ use Doctrine\ORM\ORMException;
 class TpfndUserController extends Controller
 {
 
-    const EMAIL_LINK_ROUTE = 'check_token';
+    const PASSWORD_EMAIL_LINK_CHECK_ROUTE = 'password_email_check_token';
+    const REGISTRATION_EMAIL_CONFIRMATION_ROUTE = 'registration_email_confirmation';
     const EMAIL_PASSWORD_RESET_ROUTE = 'password_email_change';
     const URL_LINK_PREPEND = "http://localhost:8000";
 
@@ -62,6 +63,9 @@ class TpfndUserController extends Controller
                 return new Response($this->createNotFoundException());
             }
 
+            $url = self::REGISTRATION_EMAIL_CONFIRMATION_ROUTE;
+            $link = self::URL_LINK_PREPEND . $this->generateLink($user, $url);
+
             $message = \Swift_Message::newInstance()
                 ->setSubject('tpfnd registration')
                 ->setFrom('carlomanuel@chromedia.com')
@@ -70,7 +74,8 @@ class TpfndUserController extends Controller
                 ->setBody(
                     $this->renderView(
                         'TpfndUserBundle:TpfndUser:notification.html.twig', array(
-                        'name' => $user->getFirstname()
+                        'name' => $user->getFirstname(),
+                        'link' => $link
                     ), 'text/html'
                     ));
 
@@ -173,7 +178,7 @@ class TpfndUserController extends Controller
     public function resetPasswordAction()
     {
         $form = $this->createFormBuilder(new TpfndUser())
-            ->setAction($this->generateUrl('process_email'))
+            ->setAction($this->generateUrl('password_email_process'))
             ->add('email', 'email')
             ->add('save', 'submit', array('label' => 'Submit'))
             ->getForm();
@@ -186,7 +191,7 @@ class TpfndUserController extends Controller
     public function processEmailAction(Request $request)
     {
         $form = $this->createFormBuilder(new TpfndUser())
-            ->setAction($this->generateUrl('process_email'))
+            ->setAction($this->generateUrl('password_email_process'))
             ->add('email', 'email')
             ->add('save', 'submit', array('label' => 'Submit'))
             ->getForm();
@@ -200,8 +205,8 @@ class TpfndUserController extends Controller
 
         if ($user) {
             //Send Mail
-            $url = self::EMAIL_LINK_ROUTE;
-            $link = self::URL_LINK_PREPEND . $this->generate24hrLink($user, $url);
+            $url = self::PASSWORD_EMAIL_LINK_CHECK_ROUTE;
+            $link = self::URL_LINK_PREPEND . $this->generateLink($user, $url);
             $message = \Swift_Message::newInstance()
                 ->setSubject('Password Reset')
                 ->setFrom('carlomanuel.molina@chromedia.com')
@@ -220,13 +225,12 @@ class TpfndUserController extends Controller
         }
     }
 
-    public function checkTokenAction($token)
+    public function checkPasswordResetEmailTokenAction($token)
     {
         $tokenLink = $this->getDoctrine()
             ->getRepository('TpfndUserBundle:TokenLink')
             ->findOneBy(array('token' => $token));
 
-        //TODO Check proper way of calculating time difference
         $timeIssued = $tokenLink->getCreated();
         $now = new \DateTime();
         $timeDiff = abs($timeIssued->getTimestamp() - $now->getTimestamp());
@@ -256,20 +260,58 @@ class TpfndUserController extends Controller
             ->getRepository('TpfndUserBundle:TokenLink')
             ->findOneBy(array('token' => $token));
 
-            $user = $tokenLink->getTpfndUser();
+        if (!$tokenLink->getIsValid()) {
+            return new Response('Link is no longer valid.');
+        }
 
+        $user = $tokenLink->getTpfndUser();
 
-        if ($user) {
+        if ($user && $tokenLink->getIsValid()) {
 
             $form = $this->createForm(new ResetPasswordType(), new PasswordChange());
 
             $form->handleRequest($request);
             $fields = $request->get('resetPassword');
             $newPassword = $this->sha256HashPassword($fields['newpassword']['newpassword'], $user->getSalt());
-            return $this->proceedWithPasswordChange($newPassword, $user);
+
+            try {
+                $em = $this->getDoctrine()->getManager();
+                $tokenLink->setIsValid(false);
+                $em->flush();
+                return $this->proceedWithPasswordChange($newPassword, $user);
+            } catch (\Exception $e) {
+                throw new \HttpResponseException('Error updating database: ' . $e);
+            }
+
         } else {
             return new Response('No user found from the given email token.');
         }
+    }
+
+    public function registrationEmailConfirmationAction($token)
+    {
+
+        $tokenLink = $this->getDoctrine()
+            ->getRepository('TpfndUserBundle:TokenLink')
+            ->findOneBy(array('token' => $token));
+
+        if (!$tokenLink->getIsValid()) {
+            return new Response('Registration already confirmed.');
+        }
+
+        try {
+            $em = $this->getDoctrine()->getManager();
+            $tokenLink->setIsValid(false);
+            $tokenLink->getTpfndUser()->setIsActive(true);
+            $em->flush();
+        } catch (\Exception $e) {
+            return new Response('Error updating database.' . $e->getMessage());
+        }
+
+        $this->get('session')->getFlashBag()->add('notice', 'Registration confirmed.');
+
+        return $this->redirect($this->generateUrl('login_route'));
+
     }
 
     public function proceedWithPasswordChange($newPassword, TpfndUser $user)
@@ -289,7 +331,7 @@ class TpfndUserController extends Controller
 
     }
 
-    public function generate24hrLink($user, $url)
+    public function generateLink($user, $url)
     {
         try {
             $em = $this->getDoctrine()->getManager();
@@ -299,6 +341,7 @@ class TpfndUserController extends Controller
             $rawLink->setToken(md5(uniqid(rand(), true)));
             $rawLink->setTpfndUser($user);
             $rawLink->setUrl($url);
+            $rawLink->setIsValid(true);
 
             $em->persist($rawLink);
             $em->flush();

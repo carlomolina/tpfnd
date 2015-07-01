@@ -4,46 +4,51 @@ namespace Tpfnd\TpfndUserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use Tpfnd\TpfndUserBundle\Entity\TpfndUser;
 
 /**
  * @ORM\Entity(repositoryClass="Tpfnd\TpfndUserBundle\Entity\TpfndUserRepository")
  */
-class TokenLink {
-  /**
-   * @ORM\Column(type="integer")
-   * @ORM\Id
-   * @ORM\GeneratedValue(strategy="AUTO")
-   */
-  private $id;
+class TokenLink
+{
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
 
-  /**
-   * @ORM\Column(type="string", length=100, unique=true)
-   * @Assert\NotBlank()
-   */
-  private $token;
+    /**
+     * @ORM\Column(type="string", length=100, unique=true)
+     * @Assert\NotBlank()
+     */
+    private $token;
 
-  /**
-   * @ORM\Column(type="string", length=255)
-   * @Assert\NotBlank()
-   */
-  private $url;
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
+     */
+    private $url;
 
-  /**
-   * @ORM\OneToOne(targetEntity="TpfndUser")
-   */
-  private $tpfndUser;
+    /**
+     * @ORM\ManyToOne(targetEntity="TpfndUser")
+     */
+    private $tpfndUser;
 
-  /**
-   * @ORM\Column(type="datetime")
-   * @Assert\NotBlank()
-   */
-  private $created;
+    /**
+     * @ORM\Column(type="datetime")
+     * @Assert\NotBlank()
+     */
+    private $created;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=false)
+     */
+    private $isValid;
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -66,7 +71,7 @@ class TokenLink {
     /**
      * Get token
      *
-     * @return string 
+     * @return string
      */
     public function getToken()
     {
@@ -89,7 +94,7 @@ class TokenLink {
     /**
      * Get url
      *
-     * @return string 
+     * @return string
      */
     public function getUrl()
     {
@@ -112,7 +117,7 @@ class TokenLink {
     /**
      * Get created
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreated()
     {
@@ -135,7 +140,7 @@ class TokenLink {
     /**
      * Get tpfndUser
      *
-     * @return TpfndUser 
+     * @return TpfndUser
      */
     public function getTpfndUser()
     {
