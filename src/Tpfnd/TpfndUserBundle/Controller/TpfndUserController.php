@@ -212,7 +212,7 @@ class TpfndUserController extends Controller {
 
     public function changePasswordFromEmailAction($token) {
 	$form = $this->createForm(new EditPasswordType(), new PasswordChange(), array(
-	    'action' => $this->generateUrl('password_update_from_email', array('token' => $token)),
+	    'action' => $this->generateUrl('password_email_update', array('token' => $token)),
 	));
 
 	return $this->render(
@@ -230,7 +230,7 @@ class TpfndUserController extends Controller {
 	return $this->proceedWithPasswordChange($request, $user);
     }
 
-    public function proceedWithPasswordChange(Request $request, $user) {
+    public function proceedWithPasswordChange(Request $request, TpfndUser $user) {
 	$form = $this->createForm(new EditPasswordType(), new PasswordChange());
 
 	$form->handleRequest($request);
