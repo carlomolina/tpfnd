@@ -2,5 +2,27 @@
 <project version="4">
   <component name="Symfony2PluginSettings">
     <option name="pluginEnabled" value="true" />
+    <option name="symfonyContainerTypeProvider" value="false" />
+    <option name="objectRepositoryTypeProvider" value="false" />
+    <option name="objectRepositoryResultTypeProvider" value="false" />
+    <option name="objectManagerFindTypeProvider" value="false" />
+    <option name="twigAnnotateTemplate" value="false" />
+    <option name="twigAnnotateAsset" value="false" />
+    <option name="twigAnnotateAssetTags" value="false" />
+    <option name="twigAnnotateRoute" value="false" />
+    <option name="twigAnnotateTranslation" value="false" />
+    <option name="phpAnnotateTemplate" value="false" />
+    <option name="phpAnnotateService" value="false" />
+    <option name="phpAnnotateRoute" value="false" />
+    <option name="phpAnnotateTemplateAnnotation" value="false" />
+    <option name="phpAnnotateTranslation" value="false" />
+    <option name="phpHighlightServices" value="true" />
+    <option name="yamlAnnotateServiceConfig" value="false" />
+    <option name="codeFoldingPhpRoute" value="false" />
+    <option name="codeFoldingPhpModel" value="false" />
+    <option name="codeFoldingPhpTemplate" value="false" />
+    <option name="codeFoldingTwigRoute" value="false" />
+    <option name="codeFoldingTwigTemplate" value="false" />
+    <option name="codeFoldingTwigConstant" value="false" />
   </component>
 </project>

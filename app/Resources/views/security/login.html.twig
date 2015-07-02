@@ -5,18 +5,6 @@
         <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
 
-    {% for flashMessage in app.session.flashbag.get('notice') %}
-        {{ flashMessage }}
-    {% endfor %}
-
-    {% for label, flashes in app.session.flashbag.all %}
-        {% for flash in flashes %}
-            <div class="alert alert-{{ label }}">
-                {{ flash }}
-            </div>
-        {% endfor %}
-    {% endfor %}
-
     <form action="{{ path('login_check') }}" method="post" novalidate="novalidate">
         {#
           <label for="username">Username:</label>

@@ -6,234 +6,279 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 
 /**
  * @ORM\Table(name="tpfnd_users")
  * @ORM\Entity(repositoryClass="Tpfnd\TpfndUserBundle\Entity\TpfndUserRepository")
  * @UniqueEntity(fields="email", message="Email already taken")
  */
-class TpfndUser implements UserInterface, \Serializable {
+class TpfndUser implements AdvancedUserInterface, \Serializable
+{
 
-  /**
-   * @ORM\Column(type="integer")
-   * @ORM\Id
-   * @ORM\GeneratedValue(strategy="AUTO")
-   */
-  private $id;
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
 
-  /**
-   * @ORM\Column(type="string", length=100)
-   * @Assert\NotBlank()
-   */
-  private $firstname;
+    /**
+     * @ORM\Column(type="string", length=100)
+     * @Assert\NotBlank()
+     */
+    private $firstname;
 
-  /**
-   * @ORM\Column(type="string", length=100)
-   * @Assert\NotBlank()
-   */
-  private $lastname;
+    /**
+     * @ORM\Column(type="string", length=100)
+     * @Assert\NotBlank()
+     */
+    private $lastname;
 
-  /**
-   * @ORM\Column(type="string", length=25, unique=false)
-   */
-  private $username;
+    /**
+     * @ORM\Column(type="string", length=25, unique=false)
+     */
+    private $username;
 
-  /**
-   * @ORM\Column(type="string", length=255)
-   * @Assert\NotBlank()
-   * @Assert\Length(min=6, max=4096)
-   */
-  private $password;
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\Length(min=6, max=4096)
+     */
+    private $password;
 
-  /**
-   * @ORM\Column(type="string", length=255)
-   */
-  private $salt;
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $salt;
 
-  /**
-   * @ORM\Column(type="string", length=255, unique=true)
-   * @Assert\NotBlank()
-   * @Assert\Email()
-   */
-  private $email;
+    /**
+     * @ORM\Column(type="string", length=255, unique=true)
+     * @Assert\NotBlank()
+     * @Assert\Email()
+     */
+    private $email;
 
-  /**
-   * @ORM\Column(name="is_active", type="boolean")
-   */
-  private $isActive;
+    /**
+     * @ORM\Column(name="is_active", type="boolean")
+     */
+    private $isActive;
 
-  public function __construct() {
-	$this->isActive = false;
-	#$this->salt = mcrypt_create_iv(12);
-  }
+    public function __construct()
+    {
+        $this->isActive = false;
+        #$this->salt = mcrypt_create_iv(12);
+    }
 
-  public function getUsername() {
-	return $this->username;
-  }
+    public function getUsername()
+    {
+        return $this->username;
+    }
 
-  public function getSalt() {
-	return $this->salt;
-  }
+    public function getSalt()
+    {
+        return $this->salt;
+    }
 
-  public function getPassword() {
-	return $this->password;
-  }
+    public function getPassword()
+    {
+        return $this->password;
+    }
 
-  public function getRoles() {
-	return array('ROLE_USER');
-  }
+    public function getRoles()
+    {
+        return array('ROLE_USER');
+    }
 
-  public function eraseCredentials() {
-	
-  }
+    public function eraseCredentials()
+    {
 
-  public function serialize() {
-	return serialize(array(
-		$this->id,
-		$this->username,
-		$this->password,
-		$this->email,
-		$this->salt,
-	));
-  }
+    }
 
-  public function unserialize($serialized) {
-	list (
-			$this->id,
-			$this->username,
-			$this->password,
-			$this->email,
-			$this->salt
-			) = unserialize($serialized);
-  }
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+            $this->username,
+            $this->password,
+            $this->email,
+            $this->salt,
+            $this->isActive
+        ));
+    }
 
-  /**
-   * Get id
-   *
-   * @return integer 
-   */
-  public function getId() {
-	return $this->id;
-  }
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+            $this->username,
+            $this->password,
+            $this->email,
+            $this->salt,
+            $this->isActive
+            ) = unserialize($serialized);
+    }
 
-  /**
-   * Set firstname
-   *
-   * @param string $firstname
-   * @return TpfndUser
-   */
-  public function setFirstname($firstname) {
-	$this->firstname = $firstname;
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
-	return $this;
-  }
+    /**
+     * Set firstname
+     *
+     * @param string $firstname
+     * @return TpfndUser
+     */
+    public function setFirstname($firstname)
+    {
+        $this->firstname = $firstname;
 
-  /**
-   * Get firstname
-   *
-   * @return string 
-   */
-  public function getFirstname() {
-	return $this->firstname;
-  }
+        return $this;
+    }
 
-  /**
-   * Set lastname
-   *
-   * @param string $lastname
-   * @return TpfndUser
-   */
-  public function setLastname($lastname) {
-	$this->lastname = $lastname;
+    /**
+     * Get firstname
+     *
+     * @return string
+     */
+    public function getFirstname()
+    {
+        return $this->firstname;
+    }
 
-	return $this;
-  }
+    /**
+     * Set lastname
+     *
+     * @param string $lastname
+     * @return TpfndUser
+     */
+    public function setLastname($lastname)
+    {
+        $this->lastname = $lastname;
 
-  /**
-   * Get lastname
-   *
-   * @return string 
-   */
-  public function getLastname() {
-	return $this->lastname;
-  }
+        return $this;
+    }
 
-  /**
-   * Set password
-   *
-   * @param string $password
-   * @return TpfndUser
-   */
-  public function setPassword($password) {
-	$this->password = $password;
+    /**
+     * Get lastname
+     *
+     * @return string
+     */
+    public function getLastname()
+    {
+        return $this->lastname;
+    }
 
-	return $this;
-  }
+    /**
+     * Set password
+     *
+     * @param string $password
+     * @return TpfndUser
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
 
-  /**
-   * Set email
-   *
-   * @param string $email
-   * @return TpfndUser
-   */
-  public function setEmail($email) {
-	$this->email = $email;
+        return $this;
+    }
 
-	return $this;
-  }
+    /**
+     * Set email
+     *
+     * @param string $email
+     * @return TpfndUser
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
 
-  /**
-   * Get email
-   *
-   * @return string 
-   */
-  public function getEmail() {
-	return $this->email;
-  }
+        return $this;
+    }
 
-  /**
-   * Set isActive
-   *
-   * @param boolean $isActive
-   * @return TpfndUser
-   */
-  public function setIsActive($isActive) {
-	$this->isActive = $isActive;
+    /**
+     * Get email
+     *
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
 
-	return $this;
-  }
+    /**
+     * Set isActive
+     *
+     * @param boolean $isActive
+     * @return TpfndUser
+     */
+    public function setIsActive($isActive)
+    {
+        $this->isActive = $isActive;
 
-  /**
-   * Get isActive
-   *
-   * @return boolean 
-   */
-  public function getIsActive() {
-	return $this->isActive;
-  }
+        return $this;
+    }
 
-  /**
-   * Set username
-   *
-   * @param string $username
-   * @return TpfndUser
-   */
-  public function setUsername($username) {
-	$this->username = $username;
+    /**
+     * Get isActive
+     *
+     * @return boolean
+     */
+    public function getIsActive()
+    {
+        return $this->isActive;
+    }
 
-	return $this;
-  }
+    /**
+     * Set username
+     *
+     * @param string $username
+     * @return TpfndUser
+     */
+    public function setUsername($username)
+    {
+        $this->username = $username;
 
-  /**
-   * Set salt
-   *
-   * @param string $salt
-   * @return TpfndUser
-   */
-  public function setSalt($salt) {
-	$this->salt = $salt;
+        return $this;
+    }
 
-	return $this;
-  }
+    /**
+     * Set salt
+     *
+     * @param string $salt
+     * @return TpfndUser
+     */
+    public function setSalt($salt)
+    {
+        $this->salt = $salt;
+
+        return $this;
+    }
+
+    public function isAccountNonExpired()
+    {
+        return true;
+    }
+
+    public function isAccountNonLocked()
+    {
+        return true;
+    }
+
+    public function isCredentialsNonExpired()
+    {
+        return true;
+    }
+
+    public function isEnabled()
+    {
+        return $this->isActive;
+    }
+
 
 }

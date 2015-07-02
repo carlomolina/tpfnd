@@ -146,4 +146,27 @@ class TokenLink
     {
         return $this->tpfndUser;
     }
+
+    /**
+     * Set isValid
+     *
+     * @param boolean $isValid
+     * @return TokenLink
+     */
+    public function setIsValid($isValid)
+    {
+        $this->isValid = $isValid;
+
+        return $this;
+    }
+
+    /**
+     * Get isValid
+     *
+     * @return boolean 
+     */
+    public function getIsValid()
+    {
+        return $this->isValid;
+    }
 }

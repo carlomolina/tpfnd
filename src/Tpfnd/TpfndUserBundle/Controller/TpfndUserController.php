@@ -18,9 +18,6 @@ use Doctrine\ORM\ORMException;
 class TpfndUserController extends Controller
 {
 
-    const PASSWORD_EMAIL_LINK_CHECK_ROUTE = 'password_email_check_token';
-    const REGISTRATION_EMAIL_CONFIRMATION_ROUTE = 'registration_email_confirmation';
-    const EMAIL_PASSWORD_RESET_ROUTE = 'password_email_change';
     const URL_LINK_PREPEND = "http://localhost:8000";
 
     public function registerAction()
@@ -40,7 +37,8 @@ class TpfndUserController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $form = $this->createForm(new RegistrationType(), new Registration(), array('action' => $this->generateUrl('user_create')));
+        $form = $this->createForm(new RegistrationType(), new Registration(), array(
+            'action' => $this->generateUrl('user_create')));
 
         $form->handleRequest($request);
 
@@ -55,12 +53,9 @@ class TpfndUserController extends Controller
             $password = $encoder->encodePassword($user->getPassword(), $user->getSalt());
             $user->setPassword($password);
             $em->persist($form->getData()->getUser());
-            dump($form->getData());
             $em->flush();
-            exit();
 
-
-            $url = self::REGISTRATION_EMAIL_CONFIRMATION_ROUTE;
+            $url = 'registration_email_confirmation';
             $link = self::URL_LINK_PREPEND . $this->generateLink($user, $url);
 
             $message = \Swift_Message::newInstance()
@@ -78,9 +73,11 @@ class TpfndUserController extends Controller
 
             $this->get('mailer')->send($message);
 
+            $this->get('session')->getFlashBag()->add('notice', 'Successfully registered to tpfnd.
+            An email has been sent for confirmation.');
+
             return $this->redirectToRoute('tpfnd_home');
         } else {
-
             return $this->render(
                 'TpfndUserBundle:TpfndUser:register.html.twig', array(
                     'form' => $form->createView())
@@ -90,13 +87,22 @@ class TpfndUserController extends Controller
 
     public function editAction($id)
     {
-        $user = $this->getDoctrine()
-            ->getRepository('TpfndUserBundle:TpfndUser')
-            ->find($id);
+        $loggedUser = $this->get('security.token_storage')->getToken()->getUser();
+        if ($loggedUser->getId() != $id) {
+            return new Response("You are not allowed to edit somebody else's user details.");
+        }
+
+        try {
+            $user = $this->getDoctrine()
+                ->getRepository('TpfndUserBundle:TpfndUser')
+                ->find($id);
+        } catch (\Exception $e) {
+            return new Response($e->getMessage());
+        }
+
         $form = $this->createForm(new EditUserType(), $user, array(
             'action' => $this->generateUrl('user_update', array('id' => $id)),
         ));
-        dump($form->createView());
 
         return $this->render(
             'TpfndUserBundle:TpfndUser:edit.html.twig', array(
@@ -106,19 +112,19 @@ class TpfndUserController extends Controller
 
     public function updateAction(Request $request, $id)
     {
-        $loggedUser = $this->get('security.token_storage')->getToken()->getUser();
-        if ($loggedUser->getId() != $id) {
-            return new Response("You are not allowed to edit somebody else's user details.");
-        }
         try {
             $oldUser = $this->getDoctrine()
                 ->getRepository('TpfndUserBundle:TpfndUser')
                 ->find($id);
+        } catch (\Exception $e) {
+            return new Response($e->getMessage());
+        }
 
-            $form = $this->createForm(new EditUserType(), new TpfndUser());
+        $form = $this->createForm(new EditUserType(), new TpfndUser());
 
-            $form->handleRequest($request);
+        $form->handleRequest($request);
 
+        if ($form->isValid()) {
             $newUser = $form->getData();
 
             $em = $this->getDoctrine()->getManager();
@@ -127,20 +133,29 @@ class TpfndUserController extends Controller
             $oldUser->setLastname($newUser->getLastname());
 
             $em->flush();
-        } catch (ORMException $e) {
-            //TODO (Proper error handling?)
-            return new Response($e);
+
+            $this->get('session')->getFlashBag()->add('notice', 'Successfully updated user details.');
+
+            return $this->redirectToRoute('tpfnd_home');
+        } else {
+            return $this->render(
+                'TpfndUserBundle:TpfndUser:edit.html.twig', array(
+                    'form' => $form->createView())
+            );
         }
-
-
-        return $this->redirectToRoute('tpfnd_home');
     }
 
     public function changePasswordAction($id)
     {
+        $loggedUser = $this->get('security.token_storage')->getToken()->getUser();
+        if ($loggedUser->getId() != $id) {
+            return new Response("You are not allowed to edit somebody else's user details.");
+        }
+
         $form = $this->createForm(new EditPasswordType(), new PasswordChange(), array(
             'action' => $this->generateUrl('password_update', array('id' => $id)),
         ));
+
 
         return $this->render(
             'TpfndUserBundle:TpfndUser:edit.html.twig', array(
@@ -148,15 +163,16 @@ class TpfndUserController extends Controller
         );
     }
 
-    public function updatePasswordAction(Request $request, $id)
+    public
+    function updatePasswordAction(Request $request, $id)
     {
-        $loggedUser = $this->get('security.token_storage')->getToken()->getUser();
-        if ($loggedUser->getId() != $id) {
-            return new Response("You are not allowed to edit somebody else's user details.");
+        try {
+            $user = $this->getDoctrine()
+                ->getRepository('TpfndUserBundle:TpfndUser')
+                ->find($id);
+        } catch (\Exception $e) {
+            return new Response($e->getMessage());
         }
-        $user = $this->getDoctrine()
-            ->getRepository('TpfndUserBundle:TpfndUser')
-            ->find($id);
 
         $form = $this->createForm(new EditPasswordType(), new PasswordChange());
 
@@ -178,7 +194,8 @@ class TpfndUserController extends Controller
 
     }
 
-    public function resetPasswordAction()
+    public
+    function resetPasswordAction()
     {
         $form = $this->createFormBuilder(new TpfndUser())
             ->setAction($this->generateUrl('password_email_process'))
@@ -191,7 +208,8 @@ class TpfndUserController extends Controller
         ));
     }
 
-    public function processEmailAction(Request $request)
+    public
+    function processEmailAction(Request $request)
     {
         $form = $this->createFormBuilder(new TpfndUser())
             ->setAction($this->generateUrl('password_email_process'))
@@ -201,14 +219,17 @@ class TpfndUserController extends Controller
         $form->handleRequest($request);
         $email = $form->getData()->getEmail();
 
-
-        $user = $this->getDoctrine()
-            ->getRepository('TpfndUserBundle:TpfndUser')
-            ->findOneBy(array('email' => $email));
+        try {
+            $user = $this->getDoctrine()
+                ->getRepository('TpfndUserBundle:TpfndUser')
+                ->findOneByEmail($email);
+        } catch (\Exception $e) {
+            return new Response($e->getMessage());
+        }
 
         if ($user) {
             //Send Mail
-            $url = self::PASSWORD_EMAIL_LINK_CHECK_ROUTE;
+            $url = 'password_email_check_token';
             $link = self::URL_LINK_PREPEND . $this->generateLink($user, $url);
             $message = \Swift_Message::newInstance()
                 ->setSubject('Password Reset')
@@ -228,26 +249,40 @@ class TpfndUserController extends Controller
         }
     }
 
-    public function checkPasswordResetEmailTokenAction($token)
+    public
+    function checkPasswordResetEmailTokenAction($token)
     {
-        $tokenLink = $this->getDoctrine()
-            ->getRepository('TpfndUserBundle:TokenLink')
-            ->findOneBy(array('token' => $token));
+        try {
+            $tokenLink = $this->getDoctrine()
+                ->getRepository('TpfndUserBundle:TokenLink')
+                ->findOneBy(array('token' => $token));
+        } catch (\Exception $e) {
+            return new Response($e->getMessage());
+        }
 
         $timeIssued = $tokenLink->getCreated();
         $now = new \DateTime();
         $timeDiff = abs($timeIssued->getTimestamp() - $now->getTimestamp());
+        $goodTime = $timeDiff < 24 * 60 * 60;
 
-        if ($tokenLink->getIsValid() && $timeDiff < 24 * 60 * 60) {
-            //TODO flash message
-            return $this->redirect($this->generateUrl(self::EMAIL_PASSWORD_RESET_ROUTE, array('token' => $token)));
-        } else {
-            //TODO Qualify error message
+        if (!$tokenLink->getIsValid()) {
+            return new Response("Link no longer valid.");
+        }
+
+        if (!$goodTime) {
             return new Response('The 24-hour period has already lapsed.');
+        }
+
+        if ($tokenLink->getIsValid() && $goodTime) {
+            return $this->redirect($this->generateUrl('password_email_change', array(
+                'token' => $token)));
+        } else {
+            return new Response("Link error.");
         }
     }
 
-    public function changePasswordFromEmailAction($token)
+    public
+    function changePasswordFromEmailAction($token)
     {
         $form = $this->createForm(new ResetPasswordType(), new PasswordChange(), array(
             'action' => $this->generateUrl('password_email_update', array('token' => $token)),
@@ -259,11 +294,16 @@ class TpfndUserController extends Controller
         );
     }
 
-    public function updatePasswordFromEmailAction(Request $request, $token)
+    public
+    function updatePasswordFromEmailAction(Request $request, $token)
     {
-        $tokenLink = $this->getDoctrine()
-            ->getRepository('TpfndUserBundle:TokenLink')
-            ->findOneBy(array('token' => $token));
+        try {
+            $tokenLink = $this->getDoctrine()
+                ->getRepository('TpfndUserBundle:TokenLink')
+                ->findOneByToken($token);
+        } catch (\Exception $e) {
+            return new Response($e->getMessage());
+        }
 
         if (!$tokenLink->getIsValid()) {
             return new Response('Link is no longer valid.');
@@ -271,29 +311,34 @@ class TpfndUserController extends Controller
 
         $user = $tokenLink->getTpfndUser();
 
-        //change these to negative tests
         if ($user) {
-
             $form = $this->createForm(new ResetPasswordType(), new PasswordChange());
 
             $form->handleRequest($request);
-            //if form is valid
-            if ($form->isValid()) {
-                $fields = $request->get('resetPassword');
-                $newPassword = $this->sha256HashPassword($fields['newpassword']['newpassword'], $user->getSalt());
+//            dump($request->get('resetPassword'));
+//            dump($form->isValid());
+//            exit();
+//
+//            if (!$form->isValid()) {
+//                $this->get('session')->getFlashBag()->add('notice', 'Invalid form fields.');
+//                return $this->redirect($this->generateUrl('password_email_change', array('token' => $token)));
+//            }
 
-                $em = $this->getDoctrine()->getManager();
-                $tokenLink->setIsValid(false);
-                $em->flush();
-                return $this->proceedWithPasswordChange($newPassword, $user);
-            }
 
+            $fields = $request->get('resetPassword');
+            $newPassword = $this->sha256HashPassword($fields['newpassword']['newpassword'], $user->getSalt());
+
+            $em = $this->getDoctrine()->getManager();
+            $tokenLink->setIsValid(false);
+            $em->flush();
+            return $this->proceedWithPasswordChange($newPassword, $user);
         } else {
             return new Response('No user found from the given email token.');
         }
     }
 
-    public function registrationEmailConfirmationAction($token)
+    public
+    function registrationEmailConfirmationAction($token)
     {
 
         $tokenLink = $this->getDoctrine()
@@ -319,7 +364,8 @@ class TpfndUserController extends Controller
 
     }
 
-    public function proceedWithPasswordChange($newPassword, TpfndUser $user)
+    public
+    function proceedWithPasswordChange($newPassword, TpfndUser $user)
     {
         try {
             $em = $this->getDoctrine()->getManager();
@@ -332,11 +378,14 @@ class TpfndUserController extends Controller
             return new Response($e);
         }
 
-        return $this->redirect($this->generateUrl('login_route'));
+        $this->get('session')->getFlashBag()->add('notice', 'Successfully changed password.');
+
+        return $this->redirect($this->generateUrl('logout'));
 
     }
 
-    public function generateLink($user, $url)
+    public
+    function generateLink($user, $url)
     {
         try {
             $em = $this->getDoctrine()->getManager();
@@ -358,12 +407,14 @@ class TpfndUserController extends Controller
         return $this->generateUrl($rawLink->getUrl(), array('token' => $rawLink->getToken()));
     }
 
-    public function sha256HashPassword($raw, $salt)
+    public
+    function sha256HashPassword($raw, $salt)
     {
         return hash('sha256', $salt . $raw);
     }
 
-    public function isPasswordCorrect($retrieved, $raw, $salt)
+    public
+    function isPasswordCorrect($retrieved, $raw, $salt)
     {
         return $retrieved === $this->sha256HashPassword($raw, $salt);
     }
