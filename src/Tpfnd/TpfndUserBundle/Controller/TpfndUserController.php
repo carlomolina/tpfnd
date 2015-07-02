@@ -40,28 +40,25 @@ class TpfndUserController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $form = $this->createForm(new RegistrationType(), new Registration());
+        $form = $this->createForm(new RegistrationType(), new Registration(), array('action' => $this->generateUrl('user_create')));
 
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            try {
-                $registration = $form->getData();
-                $user = $registration->getUser();
-                $user->setSalt(uniqid(mt_rand()));
-                $name = str_replace(' ', '', $user->getFirstname() . $user->getLastname());
-                $user->setUsername(strtolower($name));
+            $registration = $form->getData();
+            $user = $registration->getUser();
+            $user->setSalt(uniqid(mt_rand()));
+            $name = str_replace(' ', '', $user->getFirstname() . $user->getLastname());
+            $user->setUsername(strtolower($name));
 
-                $encoder = $this->container->get('sha256salted_encoder');
-                $password = $encoder->encodePassword($user->getPassword(), $user->getSalt());
-                $user->setPassword($password);
+            $encoder = $this->container->get('sha256salted_encoder');
+            $password = $encoder->encodePassword($user->getPassword(), $user->getSalt());
+            $user->setPassword($password);
+            $em->persist($form->getData()->getUser());
+            dump($form->getData());
+            $em->flush();
+            exit();
 
-                $em->persist($user);
-                $em->flush();
-            } catch (\Exception $e) {
-                //TODO (proper error handling)
-                return new Response($this->createNotFoundException());
-            }
 
             $url = self::REGISTRATION_EMAIL_CONFIRMATION_ROUTE;
             $link = self::URL_LINK_PREPEND . $this->generateLink($user, $url);
@@ -82,6 +79,12 @@ class TpfndUserController extends Controller
             $this->get('mailer')->send($message);
 
             return $this->redirectToRoute('tpfnd_home');
+        } else {
+
+            return $this->render(
+                'TpfndUserBundle:TpfndUser:register.html.twig', array(
+                    'form' => $form->createView())
+            );
         }
     }
 
@@ -235,9 +238,11 @@ class TpfndUserController extends Controller
         $now = new \DateTime();
         $timeDiff = abs($timeIssued->getTimestamp() - $now->getTimestamp());
 
-        if ($timeDiff < 24 * 60 * 60) {
+        if ($tokenLink->getIsValid() && $timeDiff < 24 * 60 * 60) {
+            //TODO flash message
             return $this->redirect($this->generateUrl(self::EMAIL_PASSWORD_RESET_ROUTE, array('token' => $token)));
         } else {
+            //TODO Qualify error message
             return new Response('The 24-hour period has already lapsed.');
         }
     }
@@ -266,21 +271,21 @@ class TpfndUserController extends Controller
 
         $user = $tokenLink->getTpfndUser();
 
-        if ($user && $tokenLink->getIsValid()) {
+        //change these to negative tests
+        if ($user) {
 
             $form = $this->createForm(new ResetPasswordType(), new PasswordChange());
 
             $form->handleRequest($request);
-            $fields = $request->get('resetPassword');
-            $newPassword = $this->sha256HashPassword($fields['newpassword']['newpassword'], $user->getSalt());
+            //if form is valid
+            if ($form->isValid()) {
+                $fields = $request->get('resetPassword');
+                $newPassword = $this->sha256HashPassword($fields['newpassword']['newpassword'], $user->getSalt());
 
-            try {
                 $em = $this->getDoctrine()->getManager();
                 $tokenLink->setIsValid(false);
                 $em->flush();
                 return $this->proceedWithPasswordChange($newPassword, $user);
-            } catch (\Exception $e) {
-                throw new \HttpResponseException('Error updating database: ' . $e);
             }
 
         } else {

@@ -2,6 +2,6 @@
 
 {% block body %}
 <a href="/login">Login</a><br /> <br />
-   {{ form(form) }} 
+   {{ form(form, { attr: {'novalidate':'novalidate' } }) }}
 {% endblock %}
 
