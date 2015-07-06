@@ -1,9 +1,16 @@
 services:
-#    tpfnd_user.example:
-#        class: Tpfnd\TpfndUserBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]
     sha256salted_encoder:
         class: Tpfnd\TpfndUserBundle\Service\Sha256Salted
 
-    tpfnd_security.tpfnd_authentication_utils:
-        class: Tpfnd\TpfndUserBundle\Service\TpfndAuthenticationUtils
+    registration_notification:
+        class: Tpfnd\TpfndUserBundle\Service\RegistrationNotification
+        arguments: [@twig, @mailer]
+        tags:
+            - { name: kernel.event_listener, event: tpfnd.events.registrationEmailNotification, method: onRegistrationEmailNotificationEvent }
+
+    password_reset:
+        class: Tpfnd\TpfndUserBundle\Service\PasswordReset
+        arguments: [@twig, @mailer]
+        tags:
+            - { name: kernel.event_listener, event: tpfnd.events.passwordResetEmailLink, method: onPasswordResetEmailLinkEvent }
+
