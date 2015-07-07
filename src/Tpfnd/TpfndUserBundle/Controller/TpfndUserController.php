@@ -142,10 +142,9 @@ class TpfndUserController extends Controller
             return new Response("You are not allowed to edit somebody else's user details.");
         }
 
-        $form = $this->createForm(new EditPasswordType(), new PasswordChange(), array(
+        $form = $this->createForm(new EditPasswordType(), null, array(
             'action' => $this->generateUrl('password_update', array('id' => $id)),
         ));
-
 
         return $this->render(
             'TpfndUserBundle:TpfndUser:edit.html.twig', array(
@@ -163,20 +162,25 @@ class TpfndUserController extends Controller
             return new Response($e->getMessage());
         }
 
-        $form = $this->createForm(new EditPasswordType(), new PasswordChange());
+        $form = $this->createForm(new EditPasswordType());
 
         $form->handleRequest($request);
 
-        $passwordChange = $request->get('editPassword');
-
-        if ($this->isPasswordCorrect(
-            $user->getPassword(), $passwordChange['oldpassword']
-            , $user->getSalt())
-        ) {
-            $newPassword = $this->sha256HashPassword(
-                $passwordChange['newpassword']['newpassword'], $user->getSalt()
+        if (!$form->isValid()) {
+            return $this->render(
+                'TpfndUserBundle:TpfndUser:edit.html.twig', array(
+                    'form' => $form->createView())
             );
-            return $this->proceedWithPasswordChange($request, $newPassword, $user);
+        }
+
+        $passwordChange = $request->get('editPassword');
+        $isPasswordCorrect = $this->get('sha256salted_encoder')->isPasswordValid(
+            $user->getPassword(), $passwordChange['oldpassword'], $user->getSalt());;
+
+        if ($isPasswordCorrect) {
+            $newPassword = $this->get('sha256salted_encoder')->encodePassword(
+                $passwordChange['newpassword']['newpassword'], $user->getSalt());
+            return $this->proceedWithPasswordChange($newPassword, $user);
         } else {
             return new Response("You have entered an incorrect password.");
         }
@@ -203,6 +207,7 @@ class TpfndUserController extends Controller
             ->add('email', 'email')
             ->add('save', 'submit', array('label' => 'Submit'))
             ->getForm();
+
         $form->handleRequest($request);
         $email = $form->getData()->getEmail();
 
@@ -266,7 +271,7 @@ class TpfndUserController extends Controller
 
     public function changePasswordFromEmailAction($token)
     {
-        $form = $this->createForm(new ResetPasswordType(), new PasswordChange(), array(
+        $form = $this->createForm(new ResetPasswordType(), null, array(
             'action' => $this->generateUrl('password_email_update', array('token' => $token)),
         ));
 
@@ -291,32 +296,25 @@ class TpfndUserController extends Controller
         }
 
         $user = $tokenLink->getTpfndUser();
+        $form = $this->createForm(new ResetPasswordType());
+        $form->handleRequest($request);
 
-        if ($user) {
-            $form = $this->createForm(new ResetPasswordType(), new PasswordChange());
-
-            $form->handleRequest($request);
-//            dump($request->get('resetPassword'));
-//            dump($form->isValid());
-//            exit();
-//
-//            if (!$form->isValid()) {
-//                $this->get('session')->getFlashBag()->add('notice', 'Invalid form fields.');
-//                return $this->redirect($this->generateUrl('password_email_change', array('token' => $token)));
-//            }
-
-
+        if ($form->isValid()) {
             $fields = $request->get('resetPassword');
-            $newPassword = $this->sha256HashPassword($fields['newpassword']['newpassword'], $user->getSalt());
-
+            $newPassword = $this->get('sha256salted_encoder')->encodePassword(
+                $fields['newpassword']['newpassword'], $user->getSalt());
             $em = $this->getDoctrine()->getManager();
             $tokenLink->setIsValid(false);
             $em->flush();
 
-            return $this->proceedWithPasswordChange($request, $newPassword, $user);
+            return $this->proceedWithPasswordChange($newPassword, $user);
         } else {
-            return new Response('No user found from the given email token.');
+            return $this->render(
+                'TpfndUserBundle:TpfndUser:edit.html.twig', array(
+                    'form' => $form->createView())
+            );
         }
+
     }
 
     public function registrationEmailConfirmationAction($token)
@@ -343,7 +341,7 @@ class TpfndUserController extends Controller
         return $this->redirect($this->generateUrl('login_route'));
     }
 
-    public function proceedWithPasswordChange(Request $request, $newPassword, TpfndUser $user)
+    private function proceedWithPasswordChange($newPassword, TpfndUser $user)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -356,7 +354,7 @@ class TpfndUserController extends Controller
         return $this->redirect($this->generateUrl('logout'));
     }
 
-    public function generateLink($user, $url)
+    private function generateLink($user, $url)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -371,16 +369,6 @@ class TpfndUserController extends Controller
         $em->flush();
 
         return $this->generateUrl($rawLink->getUrl(), array('token' => $rawLink->getToken()));
-    }
-
-    private function sha256HashPassword($raw, $salt)
-    {
-        return hash('sha256', $salt . $raw);
-    }
-
-    private function isPasswordCorrect($retrieved, $raw, $salt)
-    {
-        return $retrieved === $this->sha256HashPassword($raw, $salt);
     }
 
 }
