@@ -12,13 +12,12 @@ use Tpfnd\TpfndUserBundle\Form\Type\EditUserType;
 use Tpfnd\TpfndUserBundle\Form\Type\EditPasswordType;
 use Tpfnd\TpfndUserBundle\Form\Type\ResetPasswordType;
 use Tpfnd\TpfndUserBundle\Form\Model\Registration;
-use Tpfnd\TpfndUserBundle\Form\Model\PasswordChange;
+use Tpfnd\TpfndUserBundle\Form\Model\EditUser;
 use Tpfnd\TpfndUserBundle\Entity\TpfndUser;
 use Tpfnd\TpfndUserBundle\Entity\TokenLink;
 
 class TpfndUserController extends Controller
 {
-
     const URL_LINK_PREPEND = "http://localhost:8000";
 
     public function registerAction()
@@ -50,7 +49,7 @@ class TpfndUserController extends Controller
             $name = str_replace(' ', '', $user->getFirstname() . $user->getLastname());
             $user->setUsername(strtolower($name));
 
-            $encoder = $this->container->get('sha256salted_encoder');
+            $encoder = $this->get('sha256salted_encoder');
             $password = $encoder->encodePassword($user->getPassword(), $user->getSalt());
             $user->setPassword($password);
             $em->persist($form->getData()->getUser());
@@ -110,13 +109,13 @@ class TpfndUserController extends Controller
             return new Response($e->getMessage());
         }
 
-        $form = $this->createForm(new EditUserType(), new TpfndUser());
+        $form = $this->createForm(new EditUserType(), new EditUser());
 
         $form->handleRequest($request);
 
         if ($form->isValid()) {
             $newUser = $form->getData();
-
+            dump($newUser);
             $em = $this->getDoctrine()->getManager();
 
             $oldUser->setFirstname($newUser->getFirstname());
@@ -174,11 +173,12 @@ class TpfndUserController extends Controller
         }
 
         $passwordChange = $request->get('editPassword');
-        $isPasswordCorrect = $this->get('sha256salted_encoder')->isPasswordValid(
+        $encoder = $this->get('sha256salted_encoder');
+        $isPasswordCorrect = $encoder->isPasswordValid(
             $user->getPassword(), $passwordChange['oldpassword'], $user->getSalt());;
 
         if ($isPasswordCorrect) {
-            $newPassword = $this->get('sha256salted_encoder')->encodePassword(
+            $newPassword = $encoder->encodePassword(
                 $passwordChange['newpassword']['newpassword'], $user->getSalt());
             return $this->proceedWithPasswordChange($newPassword, $user);
         } else {
@@ -327,14 +327,10 @@ class TpfndUserController extends Controller
             return new Response('Registration already confirmed.');
         }
 
-        try {
-            $em = $this->getDoctrine()->getManager();
-            $tokenLink->setIsValid(false);
-            $tokenLink->getTpfndUser()->setIsActive(true);
-            $em->flush();
-        } catch (\Exception $e) {
-            return new Response('Error updating database.' . $e->getMessage());
-        }
+        $em = $this->getDoctrine()->getManager();
+        $tokenLink->setIsValid(false);
+        $tokenLink->getTpfndUser()->setIsActive(true);
+        $em->flush();
 
         $this->get('session')->getFlashBag()->add('notice', 'Registration confirmed.');
 

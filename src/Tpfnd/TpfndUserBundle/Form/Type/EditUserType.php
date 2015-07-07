@@ -12,7 +12,7 @@ class EditUserType extends AbstractType {
 	$builder->add('lastname', 'text');
 	$builder->add('email', 'email');
 	$builder->add('Edit', 'submit');
-	$builder->add('email', null, array('disabled' => true));
+	$builder->add('email', null, array('disabled' => true, 'required' => false));
   }
 
   public function getName() {
