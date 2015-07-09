@@ -182,7 +182,7 @@ class TpfndUserController extends Controller
                 $passwordChange['newpassword']['newpassword'], $user->getSalt());
             return $this->proceedWithPasswordChange($newPassword, $user);
         } else {
-            return new Response("You have entered an incorrect password.");
+            return new Response("You have submitted an incorrect password.");
         }
 
     }

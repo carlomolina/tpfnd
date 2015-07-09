@@ -21,7 +21,7 @@ class TpfndUserRepository extends EntityRepository implements UserProviderInterf
 	if (null === $user) {
 	  $message = sprintf(
 			  'Unable to find an active admin UserBundle:AuthUser object '
-			  . 'identitifed by "%s".', $username
+			  . 'identified by "%s".', $username
 	  );
 	  throw new UsernameNotFoundException($message);
 	}

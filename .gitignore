@@ -10,4 +10,8 @@
 /vendor/
 /web/bundles/
 /nbprojects
+<<<<<<< 83255a31951c02d8300efaf90557ae4215488ac1
 /.idea
+=======
+workspace.xml
+>>>>>>> c60446d5ac56a684c61c8235ce104384b43390b7
